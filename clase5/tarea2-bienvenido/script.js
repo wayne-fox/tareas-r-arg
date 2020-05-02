@@ -17,6 +17,13 @@ Ejemplo form:
 *
 * */
 
+
+/*
+document.querySelector("#boton-ingresar").onclick = function(){
+    ingresar();
+}
+*/
+
 function ingresar() {
     let titulo = document.querySelector("#titulo");
     let saludo = document.querySelector("#saludo");
@@ -24,8 +31,14 @@ function ingresar() {
     let primerNombre = document.querySelector("#primer-nombre").value;
     let segundoNombre = document.querySelector("#segundo-nombre").value;
     let apellido = document.querySelector("#apellido").value;
-    let edad = document.querySelector("#edad").value;
+    let edad = Number(document.querySelector("#edad").value);
 
-    saludo.innerText = `¡Hola, ${primerNombre} ${segundoNombre} ${apellido}, ${edad}!`;
-    titulo.innerText = `¡Bienvenido, ${primerNombre}!`;
+    if (primerNombre === "") {
+        saludo.innerText = `Ok, mantené tu identidad en secreto...`;
+    } else if (isNaN(edad)) {
+        saludo.innerText = `¡Hola, no reconozco qué edad tenés!`;
+    } else {
+        titulo.innerText = `¡Bienvenido, ${primerNombre}!`;
+        saludo.innerText = `¡Hola, ${primerNombre} ${segundoNombre} ${apellido}, ${edad}!`;
+    }
 }
